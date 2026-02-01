@@ -109,13 +109,6 @@ sequenceDiagram
 4.  **Open in Browser**
     Visit [http://localhost:8000](http://localhost:8000)
 
-## 📸 Screenshots
-
-|             Light/Dark Mode             |                 Mobile View                 |
-| :-------------------------------------: | :-----------------------------------------: |
-| ![Main View](screenshots/main-view.png) | ![Mobile View](screenshots/mobile-view.png) |
-|               _Dashboard_               |             _Responsive Design_             |
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please fork the repository and open a pull request.
