@@ -91,7 +91,7 @@ sequenceDiagram
 
     ```bash
     git clone https://github.com/10Niranjan/ToDo_List.git
-    cd ToDo_List-
+    cd ToDo_List
     ```
 
 2.  **Compile the Server**
