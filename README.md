@@ -4,7 +4,6 @@
 > A premium, modern To-Do application built with a custom Java HTTP server and a Progressive Web App (PWA) frontend.
 
 ![Project Banner](screenshots/banner.png)
-_(Replace `screenshots/banner.png` with a screenshot of your app)_
 
 ## 🌟 Features
 
