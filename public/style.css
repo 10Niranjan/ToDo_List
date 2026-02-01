@@ -107,10 +107,10 @@ body {
     padding: 3px;
 
     background: linear-gradient(135deg, 
-        #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff,
-        #ff0000);
+        #ff0000, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff,
+        #ff0000, #ff0000);
     background-size: 300% 300%;
-    animation: rgb-flow-diag 4s linear infinite;
+    animation: rgb-flow-diag 10s linear infinite;
 
     -webkit-mask: 
         linear-gradient(#fff 0 0) content-box, 
@@ -129,6 +129,7 @@ body {
 .app-container:hover::before {
     padding: 5px;
     filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.6));
+    animation-duration: 5s
 }
 
 
