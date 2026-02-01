@@ -20,25 +20,35 @@
 
 ```mermaid
 graph TD
-    User[User / Browser]
+    %% Styles
+    classDef neonBlue fill:#1a1a1a,stroke:#00f3ff,stroke-width:2px,color:#fff,shadow:0 0 10px #00f3ff;
+    classDef neonPink fill:#1a1a1a,stroke:#bc13fe,stroke-width:2px,color:#fff;
+    classDef neonGreen fill:#1a1a1a,stroke:#0aff0a,stroke-width:2px,color:#fff;
+    classDef highlight fill:#252525,stroke:#fff,stroke-width:1px,color:#fff;
+
+    User([User / Browser]):::neonBlue
+
     subgraph "Frontend (PWA)"
-        UI[HTML/CSS/JS]
-        SW[Service Worker]
-        Cache[Local Cache]
-    end
-    subgraph "Backend (Java)"
-        Server[SimpleTaskServer]
-        Handler[Request Handler]
-        DB[(tasks.dat)]
+        direction TB
+        UI[HTML/CSS/JS]:::neonPink
+        SW[Service Worker]:::neonGreen
+        Cache[Local Cache]:::highlight
     end
 
-    User -->|HTTP Request| Server
-    User -->|Interacts| UI
-    UI -->|"API Calls (fetch)"| Server
-    SW -->|Caches Assets| Cache
-    Server -->|"Routes /api/*"| Handler
-    Handler -->|"Reads/Writes"| DB
-    Server -->|"Serves Static Files"| UI
+    subgraph "Backend (Java)"
+        direction TB
+        Server[SimpleTaskServer]:::neonBlue
+        Handler[Request Handler]:::highlight
+        DB[(tasks.dat)]:::neonPink
+    end
+
+    User ==>|HTTP Request| Server
+    User -.->|Interacts| UI
+    UI ==>|"API Calls (fetch)"| Server
+    SW -.->|Caches Assets| Cache
+    Server ==>|"Routes /api/*"| Handler
+    Handler ==>|"Reads/Writes"| DB
+    Server -.->|"Serves Static Files"| UI
 ```
 
 ### Request Flow
