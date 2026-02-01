@@ -1,0 +1,489 @@
+:root {
+    --bg-dark: #050505;
+    --card-bg: rgba(20, 20, 20, 0.6);
+    --neon-blue: #00f3ff;
+    --neon-pink: #bc13fe;
+    --neon-green: #0aff0a;
+    --text-main: #ffffff;
+    --text-dim: #a0a0a0;
+    --glow-blue: 0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.3);
+    --glow-pink: 0 0 10px rgba(188, 19, 254, 0.5), 0 0 20px rgba(188, 19, 254, 0.3);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+.background-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
+    overflow: hidden;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: float 10s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--neon-blue), transparent 70%);
+    top: -100px;
+    left: -100px;
+}
+
+.blob-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--neon-pink), transparent 70%);
+    bottom: -50px;
+    right: -50px;
+    animation-delay: -5s;
+}
+
+.blob-3 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #7000ff, transparent 70%);
+    top: 40%;
+    left: 60%;
+    animation-duration: 15s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, 50px) scale(1.1); }
+}
+
+.app-container {
+    width: 100%;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    position: relative;
+    /* overflow: hidden; Removed to show border glow */
+    animation: fadeIn 0.90s ease-out;
+}
+
+
+.app-container::before {
+    content: '';
+    position: absolute;
+
+    inset: -2px;
+    border-radius: inherit;
+    padding: 3px;
+
+    background: linear-gradient(135deg, 
+        #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff,
+        #ff0000);
+    background-size: 300% 300%;
+    animation: rgb-flow-diag 4s linear infinite;
+
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    
+    z-index: 20;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.app-container:hover::before {
+    padding: 5px;
+    filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.6));
+}
+
+
+.app-container::after,
+.rgb-border-right,
+.rgb-border-bottom {
+    display: none;
+}
+
+@keyframes rgb-flow-diag {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes rgb-flow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+@media (min-width: 768px) {
+    .app-container {
+        width: 600px;
+        height: 85vh;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+header p {
+    color: var(--neon-blue);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+
+
+.input-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.input-group input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    outline: none;
+    transition: all 0.3s;
+    font-family: 'Outfit', sans-serif;
+}
+
+.input-group input:focus {
+    border-color: var(--neon-blue);
+    box-shadow: var(--glow-blue);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.input-group button {
+    background: transparent;
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    width: 60px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-group button:hover {
+    background: var(--neon-blue);
+    color: black;
+    box-shadow: var(--glow-blue);
+    transform: translateY(-2px);
+}
+
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-dim);
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+}
+
+.filter-btn:hover {
+    border-color: white;
+    color: white;
+}
+
+.filter-btn.active {
+    border-color: var(--neon-pink);
+    color: var(--neon-pink);
+    box-shadow: var(--glow-pink);
+    background: rgba(188, 19, 254, 0.1);
+}
+
+
+.task-list {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.task-list::-webkit-scrollbar {
+    width: 4px;
+}
+.task-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+.task-list::-webkit-scrollbar-thumb {
+    background: var(--neon-blue);
+    border-radius: 4px;
+}
+
+.task-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+
+    border-radius: 12px;
+    padding: 20px 20px 20px 24px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: slideIn 0.3s ease-out;
+}
+
+
+.task-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--text-dim);
+    transition: all 0.3s;
+    z-index: 2;
+}
+
+
+.task-item:hover::before {
+    width: 6px;
+    background: linear-gradient(180deg, 
+        #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff,
+        #ff0000);
+    background-size: 100% 200%;
+    animation: rgb-flow-vertical 3s linear infinite alternate;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes rgb-flow-vertical {
+    0% { background-position: 50% 0%; }
+    100% { background-position: 50% 100%; }
+}
+
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.task-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.task-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
+    transform: translateX(-100%);
+    transition: 0.5s;
+}
+
+.task-item:hover::after {
+    transform: translateX(100%);
+}
+
+.task-item.status-ongoing::before {
+    background: var(--neon-green);
+    box-shadow: 0 0 10px var(--neon-green);
+}
+.task-item.status-completed::before {
+    background: var(--neon-pink);
+    opacity: 0.7;
+}
+
+
+.task-item.status-completed:hover::before {
+    opacity: 1;
+}
+
+.task-content {
+    flex: 1;
+}
+
+.task-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.status-completed .task-title {
+    text-decoration: line-through;
+    color: var(--text-dim);
+}
+
+.status-badge {
+    font-size: 0.65rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+.status-ongoing .status-badge {
+    color: #000;
+    background: var(--neon-green);
+    box-shadow: 0 0 10px var(--neon-green);
+}
+
+.status-completed .status-badge {
+    color: #fff;
+    background: var(--neon-pink);
+    box-shadow: 0 0 10px var(--neon-pink);
+}
+
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.action-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+    color: white;
+}
+
+.toggle-btn:hover { color: var(--neon-green); }
+.edit-btn:hover { color: var(--neon-blue); }
+.delete-btn:hover { color: var(--neon-pink); }
+
+
+.edit-input {
+    width: 100%;
+    padding: 10px 15px;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid var(--neon-blue);
+    color: white;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+}
+
+.edit-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.save-btn {
+    background: var(--neon-blue);
+    color: black;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.cancel-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.save-btn:hover { box-shadow: var(--glow-blue); }
+.cancel-btn:hover { background: rgba(255, 255, 255, 0.2); }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
